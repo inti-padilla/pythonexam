@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Trips</title>
+</head>
+<body>
+<a href="/logout"><button>Logout</button></a>
+<h1>Welcome, {{user}}. </h1>
+<h1>Here is a list of your friends!</h1>
+<table border=1>
+    <tr>
+        <th>ALIAS</th>
+        <th>ACTION</th>
+    </tr>
+    <div>
+    {% for x in friends %}
+    <tr>
+        <th>{{x.name}}</th>
+        <th><a href="/view_user/{{x.id}}">View Profile</a> <a href="/del_friend/{{x.id}}">Remove from list</a> </th>
+    </tr>
+    {% endfor %}
+    </div>
+</table>
+
+<h1>Other users not on your friend's list</h1>
+<table border=1>
+    <tr>
+        <th>ALIAS</th>
+        <th>ACTION</th>
+    </tr>
+    {% for x in not_friends%}
+        <tr>
+            <td><a href=/view_user/{{x.id}}>{{x.username}}</a></td>
+            <td><a href="/add_friend/{{x.id}}">Add Friend</td>
+            
+        </tr>
+    {% endfor %}
+</table>
+
+</body>

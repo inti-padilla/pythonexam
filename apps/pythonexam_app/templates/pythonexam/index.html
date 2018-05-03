@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>FriendFace</title>
+<style>
+    .col {
+        width: 500px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .error {
+        color: #f00;
+        font-weight: bold;
+    }
+    .success {
+        color: #090;
+        font-weight: bold;
+    }
+    
+</style>
+</head>
+<body>
+<h1>Welcome to FriendFace</h1>
+<h2>Register if you don't have an account; or log in if you already have one.</h2>
+
+<fieldset class="col">
+    <legend>Register</legend>
+    <form action="/register" method="post">
+        {% csrf_token %}
+        <p>Name: <input type="text" name="name" placeholder="Your name"></p>
+        <p>Username: <input type="text" name="username" placeholder="Username"></p>
+        <p>Email adress: <input type="text" name="email" placeholder="Your email"></p>
+        <p>* Password must be at least 8 characters</p>
+        <p>Password: <input type="password" name="password" placeholder="Your password"></p>
+        <p>Confirm: <input type="password" name="confirm" placeholder="Confirm password"></p>
+        <p>Date of Birth: <input type="date" name="dob"></p>
+        <button type="submit">Register</button>
+    </form>
+</fieldset>
+
+<fieldset class="col">
+    <legend>Login</legend>
+    <form action="/login" method="post">
+        {% csrf_token %}
+        <p>Username: <input type="text" name="username" placeholder="Username"></p> 
+        <p>Password: <input type="password" name="password" placeholder="Your password"></p>
+        <button type="submit">Login</button></a>
+    </form>
+</fieldset>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li
+        {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+</body>
+</html>
